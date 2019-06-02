@@ -1,5 +1,4 @@
-There's a lot of fun work going on to infer SQL queries from questions and tables.
-Here I try to make recent models a bit more accessible and easy to use.
+Infer SQL queries from plain-text questions and table headers.
 
 Requirements:
  * install `docker`
@@ -10,7 +9,6 @@ Requirements:
 ## sqlova
 
 This wraps up a published pretrained model for Sqlova (https://github.com/naver/sqlova/).
-The model is hobbled a bit by not having access to column types.
 
 Fetch and start sqlova running as an api server on port 5050:
 
@@ -39,7 +37,8 @@ This is using the sample `bridges.csv` included in this repo.
 | Throgs Neck | O. H. Ammann | 1800 |
 | George Washington | O. H. Ammann | 3500 |
 
-Here are some questions and answers:
+Here are some examples of the answers and sql inferred for plain-text questions about
+this table:
 
 | question | answer | sql |
 |---|---|---|
@@ -47,7 +46,7 @@ Here are some questions and answers:
 | who designed the george washington | O. H. Ammann | `SELECT (designer) FROM bridges WHERE bridge = ? ['george washington']` |
 | how many bridges are there | 8 | `SELECT count(bridge) FROM bridges` |
 | how many bridges are designed by O. H. Ammann | 4 | `SELECT count(bridge) FROM bridges WHERE designer = ? ['O. H. Ammann']` |
-| which bridge are longer than 2000 | Bronx Whitestone, George Washington | `SELECT (bridge) FROM bridges WHERE length > ? ['2000'] |
+| which bridge are longer than 2000 | Bronx Whitestone, George Washington | `SELECT (bridge) FROM bridges WHERE length > ? ['2000']` |
 | how many bridges are longer than 2000 | 2 | `SELECT count(bridge) FROM bridges WHERE length > ? ['2000']` |
 | what is the shortest length | 1182 | `SELECT min(length) FROM bridges` |
 
