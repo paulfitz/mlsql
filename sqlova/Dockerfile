@@ -1,51 +1,39 @@
 # latest is not actually the most recent, currently
-FROM vzhong/corenlp-server:latest
 
-RUN \
-  mkdir -p /var/cache/apt/archives/partial && \
-  apt update && \
-  apt install -y git
+FROM ubuntu:18.04
 
-# we need python 3.6 because sqlova uses f strings
-RUN \
-  add-apt-repository ppa:deadsnakes/ppa && \
-  apt update && \
-  apt install -y python3.6
-
-# Get pip (for 3.5, but python 3.6 will be able to share it)
+# Install Java
 RUN \
   apt update && \
-  apt install -y python3-pip && \
-  pip3 install --upgrade pip
+  apt install -y unzip openjdk-8-jre-headless git wget && \
+  apt install -y python3 python3-pip python3-dev && \
+  rm -rf /var/lib/apt/lists/*
 
-# ujson has some native code to be compiled
-RUN \
-  apt install -y python3.6-dev
-
-RUN mkdir -p /opt/sqlova-deps
-WORKDIR /opt/sqlova-deps
-
-ADD requirements.txt requirements.txt
+ENV VERSION stanford-corenlp-full-2016-10-31
 
 RUN \
-  python3.6 -m pip install -r requirements.txt
-
-# brutal but handy
-RUN \
-  ln -s /usr/bin/python3.6 /usr/bin/python && \
-  rm /usr/bin/python3 && \
-  ln -s /usr/bin/python3.6 /usr/bin/python3
-
-RUN mkdir -p /opt/sqlova
-WORKDIR /opt/sqlova
+ mkdir -p /opt/corenlp && \
+ cd /opt/corenlp && \
+ wget --quiet http://nlp.stanford.edu/software/$VERSION.zip -O corenlp.zip && \
+ unzip corenlp.zip && \
+ mv $VERSION src && \
+ rm -r corenlp.zip && \
+ rm -rf /var/lib/apt/lists/*
 
 RUN \
   cd /opt && \
-  git clone https://github.com/paulfitz/sqlova/ -b add_plain_prediction
+  git clone https://github.com/paulfitz/sqlova/ -b prediction_api
 
-RUN mkdir -p /share
-WORKDIR /share
+WORKDIR /opt/sqlova
 
-# run corenlp-server
-CMD ["/sbin/my_init"]
+add support support
+add pretrained pretrained
 
+add run_services.sh run_services.sh
+
+RUN \
+  pip3 install -r requirements.txt
+
+CMD ["./run_services.sh"]
+
+EXPOSE 5050

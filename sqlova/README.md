@@ -5,16 +5,9 @@ Steps:
 
 ```
   make
-  make start
-  # Get a csv file, eg:
-  #    https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/USstateAbbreviations.csv
-  #    (let's rename this to abbrev.csv)
-  ./add_csv.sh play abbrev.csv
-  ./add_question.sh play abbrev "what state has ansi digits of 11"
-  ./predict.sh play
+  # Get a csv file, e.g. bridges.csv
+  curl -F "csv=@bridges.csv" -F "q=how long is throgs neck" localhost:5050
 ```
 
-Result should be in results_play.jsonl.
-
 If model crashes without appearing to give output, check docker memory limit is high enough.
-(Docker->Preferences->Advanced or equivalent).  Say at least 3GB?
+(Docker->Preferences->Advanced or equivalent).  3GB works!
