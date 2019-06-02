@@ -7,7 +7,7 @@ Requirements:
  * Make sure docker allows at least 3GB of RAM (see `Docker`>`Preferences`>`Advanced`
    or equivalent)
 
-== sqlova ==
+## sqlova
 
 This wraps up a published pretrained model for Sqlova (https://github.com/naver/sqlova/).
 The model is hobbled a bit by not having access to column types.
@@ -43,10 +43,14 @@ Here are some questions and answers:
 
 | question | answer | sql |
 |---|---|---|
-| how long is throgs neck | 1800 | SELECT (length) FROM bridges WHERE bridge = ? ['throgs neck'] |
-| who designed the george washington | O. H. Ammann | |
-| how many bridges are there | 8 | |
-| how many bridges are designed by O. H. Ammann | 4 | |
-| which bridge are longer than 2000 | Bronx Whitestone, George Washington | |
-| how many bridges are longer than 2000 | 2 | |
-| what is the shortest length | 1182 | |
+| how long is throgs neck | 1800 | `SELECT (length) FROM bridges WHERE bridge = ? ['throgs neck']` |
+| who designed the george washington | O. H. Ammann | `SELECT (designer) FROM bridges WHERE bridge = ? ['george washington']` |
+| how many bridges are there | 8 | `SELECT count(bridge) FROM bridges` |
+| how many bridges are designed by O. H. Ammann | 4 | `SELECT count(bridge) FROM bridges WHERE designer = ? ['O. H. Ammann']` |
+| which bridge are longer than 2000 | Bronx Whitestone, George Washington | `SELECT (bridge) FROM bridges WHERE length > ? ['2000'] |
+| how many bridges are longer than 2000 | 2 | `SELECT count(bridge) FROM bridges WHERE length > ? ['2000']` |
+| what is the shortest length | 1182 | `SELECT min(length) FROM bridges` |
+
+I really need to fix types, or better allow working with sqlite dbs directly,
+since a lot of these answers could have been wrong because the length column
+is being treated as a string (not sqlova's fault - mine).
