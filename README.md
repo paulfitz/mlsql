@@ -56,4 +56,4 @@ Some questions about [iris.csv](https://en.wikipedia.org/wiki/Iris_flower_data_s
 |---|---|---|
 what is the average petal width for virginica | 2.026 | SELECT avg(Petal.Width) FROM iris WHERE Species = ? ['virginica'] |
 what is the longest sepal for versicolor | 7.0 | SELECT max(Sepal.Length) FROM iris WHERE Species = ? ['versicolor'] |
-how many setosa are there | 150 | SELECT count(col0) FROM iris |
+how many setosa rows are there | 50 | SELECT count(col0) FROM iris WHERE Species = ? ['setosa'] |
