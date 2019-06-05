@@ -13,15 +13,15 @@ This wraps up a published pretrained model for Sqlova (https://github.com/naver/
 Fetch and start sqlova running as an api server on port 5050:
 
 ```
-docker run --name sqlova -d -p "5050:5050" paulfitz/sqlova
+docker run --name sqlova -d -p 5050:5050 paulfitz/sqlova
 ```
 
 Be patient, the image is about 4.2GB.  Once it is running, it'll take a few seconds
-to load models and then you can start asking questions about CSV table.  For example:
+to load models and then you can start asking questions about CSV tables.  For example:
 
 ```
 curl -F "csv=@bridges.csv" -F "q=how long is throgs neck" localhost:5050
-# should get: answer 1800, SELECT (length) FROM bridges WHERE bridge = ? ["throgs neck"]
+# {"answer":[1800],"params":["throgs neck"],"sql":"SELECT (length) FROM bridges WHERE bridge = ?"}
 ```
 
 This is using the sample `bridges.csv` included in this repo.
@@ -50,6 +50,10 @@ this table:
 | how many bridges are longer than 2000 | 2 | `SELECT count(bridge) FROM bridges WHERE length > ? ['2000']` |
 | what is the shortest length | 1182 | `SELECT min(length) FROM bridges` |
 
-I really need to fix types, or better allow working with sqlite dbs directly,
-since a lot of these answers could have been wrong because the length column
-is being treated as a string (not sqlova's fault - mine).
+Some questions about [iris.csv](https://en.wikipedia.org/wiki/Iris_flower_data_set):
+
+| question | answer | sql |
+|---|---|---|
+what is the average petal width for virginica | 2.026 | SELECT avg(Petal.Width) FROM iris WHERE Species = ? ['virginica'] |
+what is the longest sepal for versicolor | 7.0 | SELECT max(Sepal.Length) FROM iris WHERE Species = ? ['versicolor'] |
+how many setosa are there | 150 | SELECT count(col0) FROM iris |

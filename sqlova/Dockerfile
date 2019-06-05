@@ -20,8 +20,10 @@ RUN \
  rm -r corenlp.zip && \
  rm -rf /var/lib/apt/lists/*
 
+
 RUN \
   cd /opt && \
+  echo v2 && \
   git clone https://github.com/paulfitz/sqlova/ -b prediction_api
 
 WORKDIR /opt/sqlova
