@@ -54,12 +54,13 @@ Some questions about [iris.csv](https://en.wikipedia.org/wiki/Iris_flower_data_s
 
 | question | answer | sql |
 |---|---|---|
-what is the average petal width for virginica | 2.026 | SELECT avg(Petal.Width) FROM iris WHERE Species = ? ['virginica'] |
-what is the longest sepal for versicolor | 7.0 | SELECT max(Sepal.Length) FROM iris WHERE Species = ? ['versicolor'] |
-how many setosa rows are there | 50 | SELECT count(col0) FROM iris WHERE Species = ? ['setosa'] |
+| what is the average petal width for virginica | 2.026 | SELECT avg(Petal.Width) FROM iris WHERE Species = ? ['virginica'] |
+| what is the longest sepal for versicolor | 7.0 | SELECT max(Sepal.Length) FROM iris WHERE Species = ? ['versicolor'] |
+| how many setosa rows are there | 50 | SELECT count(col0) FROM iris WHERE Species = ? ['setosa'] |
 
 There are plenty of types of questions this model cannot answer (and that aren't covered
 in the dataset it is trained on, or in the sql it is permitted to generate).  I hope to
-track research in the area and substitute in models as they become available.  Things are
-moving fast!
+track research in the area and substitute in models as they become available:
 
+ * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
+ * [Spider leaderboard](https://yale-lily.github.io/spider)
