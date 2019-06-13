@@ -83,4 +83,4 @@ track research in the area and substitute in models as they become available:
 
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [Spider leaderboard](https://yale-lily.github.io/spider)
- * Coming soon hopefully: [IRNet](https://github.com/zhanzecheng/IRNet)
+ * Code/models coming soon hopefully: [IRNet](https://github.com/zhanzecheng/IRNet), [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
