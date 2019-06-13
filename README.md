@@ -50,13 +50,32 @@ this table:
 | how many bridges are longer than 2000 | 2 | `SELECT count(bridge) FROM bridges WHERE length > ? ['2000']` |
 | what is the shortest length | 1182 | `SELECT min(length) FROM bridges` |
 
+With the `players.csv` sample from WikiSQL:
+
+| Player | No. | Nationality | Position | Years in Toronto | School/Club Team |
+|---|---|---|---|---|---|
+| Antonio Lang | 21 | United States | Guard-Forward | 1999-2000 | Duke |
+| Voshon Lenard | 2 | United States | Guard | 2002-03 | Minnesota |
+| Martin Lewis | 32, 44 | United States | Guard-Forward | 1996-97 | Butler CC (KS) |
+| Brad Lohaus | 33 | United States | Forward-Center | 1996 | Iowa |
+| Art Long | 42 | United States | Forward-Center | 2002-03 | Cincinnati |
+| John Long | 25 | United States | Guard | 1996-97 | Detroit |
+| Kyle Lowry | 3 | United States | Guard | 2012-present | Villanova |
+
+| question | answer | sql |
+|---|---|---|
+| What number did the person playing for Duke wear? | 21 | `SELECT (No.) FROM players WHERE School/Club Team = ? ['duke']` |
+| Who is the player that wears number 42? | Art Long  | `SELECT (Player) FROM players WHERE No. = ? ['42']` |
+| What year did Brad Lohaus play? | 1996 | `SELECT (Years in Toronto) FROM players WHERE Player = ? ['brad lohaus']` |
+| What country is Voshon Lenard from? | United States | `SELECT (Nationality) FROM players WHERE Player = ? ['voshon lenard']` |
+
 Some questions about [iris.csv](https://en.wikipedia.org/wiki/Iris_flower_data_set):
 
 | question | answer | sql |
 |---|---|---|
-| what is the average petal width for virginica | 2.026 | SELECT avg(Petal.Width) FROM iris WHERE Species = ? ['virginica'] |
-| what is the longest sepal for versicolor | 7.0 | SELECT max(Sepal.Length) FROM iris WHERE Species = ? ['versicolor'] |
-| how many setosa rows are there | 50 | SELECT count(col0) FROM iris WHERE Species = ? ['setosa'] |
+| what is the average petal width for virginica | 2.026 | `SELECT avg(Petal.Width) FROM iris WHERE Species = ? ['virginica']` |
+| what is the longest sepal for versicolor | 7.0 | `SELECT max(Sepal.Length) FROM iris WHERE Species = ? ['versicolor']` |
+| how many setosa rows are there | 50 | `SELECT count(col0) FROM iris WHERE Species = ? ['setosa']` |
 
 There are plenty of types of questions this model cannot answer (and that aren't covered
 in the dataset it is trained on, or in the sql it is permitted to generate).  I hope to
