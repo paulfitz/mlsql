@@ -83,7 +83,7 @@ track research in the area and substitute in models as they become available:
 
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [Spider leaderboard](https://yale-lily.github.io/spider)
- * Code/models coming soon hopefully: [IRNet](https://github.com/zhanzecheng/IRNet), [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
+ * Code/models coming soon hopefully: [IRNet](https://github.com/zhanzecheng/IRNet) (site removed), [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
  * Is there any code for [X-SQL](https://www.microsoft.com/en-us/research/publication/x-sql-reinforce-context-into-schema-representation/)?
  * [SyntaxSQL](https://github.com/taoyds/syntaxSQL)
  * [NL2SQL Challenge](https://tianchi.aliyun.com/competition/entrance/231716/information)
