@@ -88,3 +88,5 @@ track research in the area and substitute in models as they become available:
  * [SyntaxSQL](https://github.com/taoyds/syntaxSQL)
  * [NL2SQL Challenge](https://tianchi.aliyun.com/competition/entrance/231716/information)
  * A term paper including a Sqlova reimplementation with tweaks: [Search Like a Human: Neural Machine Translation for Database Search](https://web.stanford.edu/class/cs224n/reports/custom/15709203.pdf)
+ * [NL2SQL-BERT](https://github.com/guotong1988/NL2SQL-BERT) gives an example of how to add features derived from the table content to improve results.
+
