@@ -12,7 +12,7 @@ import argparse, csv, json, os
 import records
 
 def get_table_name(table_id):
-    return 'table_{}'.format(table_id)
+    return '{}'.format(table_id)
 
 def csv_stream_to_sqlite(table_id, f, sqlite_file_name):
     db = records.Database('sqlite:///{}'.format(sqlite_file_name))

@@ -1,5 +1,4 @@
 #!/bin/bash
 
 source venv/bin/activate
-cd /server
-python ./prediction_server.py
+PYTHONPATH=$PWD/IRNet:$PWD/server:$PYTHONPATH python server/prediction_server.py
