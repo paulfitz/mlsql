@@ -108,12 +108,16 @@ curl -F "sqlite=@companies.sqlite" -F "q=what company has Dracula as CEO" localh
 # Answer: SELECT T1.company FROM organizations AS T1 JOIN people AS T2 WHERE T2.name = 1
 ```
 
+(Note there's no value prediction, so e.g. the where clauses are `= 1` rather than something
+more useful).
+
 ## Other models
 
 I hope to track research in the area and substitute in models as they become available:
 
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [Spider leaderboard](https://yale-lily.github.io/spider)
+ * [RAT-SQL](https://paperswithcode.com/paper/rat-sql-relation-aware-schema-encoding-and)
  * [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
  * Is there any code for [X-SQL](https://www.microsoft.com/en-us/research/publication/x-sql-reinforce-context-into-schema-representation/)?
  * [SyntaxSQL](https://github.com/taoyds/syntaxSQL)
