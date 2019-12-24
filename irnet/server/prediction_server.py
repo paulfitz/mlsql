@@ -143,11 +143,12 @@ def handle_request0(request):
         if csv_key not in request.files:
             csv_key = 'csv[]'
         print(request.files)
-        if not csv_key in request.files:
-            raise Exception('please include a csv file ')
+        if csv_key not in request.files and not 'sqlite' in request.files:
+            raise Exception('please include a csv file or sqlite file')
         if not 'q' in request.form:
             raise Exception('please include a q parameter with a question in it')
         csvs = request.files.getlist(csv_key)
+        sqlite_file = request.files.get('sqlite')
         q = request.form['q']
 
         # brute force removal of any old requests
@@ -157,17 +158,20 @@ def handle_request0(request):
             "/cache/case_*"
         ])
         key = "case_" + str(uuid.uuid4())
+        data_dir = os.path.join('/cache', key)
+        os.makedirs(os.path.join(data_dir, 'data'), exist_ok=True)
         print("Key", key)
         for csv in csvs:
             print("Working on", csv)
             table_id = os.path.splitext(csv.filename)[0]
             table_id = re.sub(r'\W+', '_', table_id)
             stream = io.StringIO(csv.stream.read().decode("UTF8"), newline=None)
-            data_dir = os.path.join('/cache', key)
-            os.makedirs(os.path.join(data_dir, 'data'), exist_ok=True)
             add_csv.csv_stream_to_sqlite(table_id, stream, os.path.join(data_dir, 'data',
                                                                         'data.sqlite'))
             stream.seek(0)
+        if sqlite_file:
+            print("Working on", sqlite_file)
+            sqlite_file.save(os.path.join(data_dir, 'data', 'data.sqlite'))
         question_file = os.path.join(data_dir, 'question.json')
         tables_file = os.path.join(data_dir, 'tables.json')
         dummy_file = os.path.join(data_dir, 'dummy.json')
