@@ -89,7 +89,7 @@ details of running it, so don't judge the model by playing with it here.
 Fetch and start irnet running as an api server on port 5050:
 
 ```
-docker run --name irnet -d -p 5050:5050 -v $PWD/cache:/cache paulfitz/sqlova
+docker run --name irnet -d -p 5050:5050 -v $PWD/cache:/cache paulfitz/irnet
 ```
 
 Be super patient! Especially on the first run, when a few large models need to
