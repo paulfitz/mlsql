@@ -152,11 +152,12 @@ def handle_request0(request):
         q = request.form['q']
 
         # brute force removal of any old requests
-        subprocess.run([
-            "rm",
-            "-rf",
-            "/cache/case_*"
-        ])
+        if not TRIAL_RUN:
+            subprocess.run([
+                "bash",
+                "-c",
+                "rm -rf /cache/case_*"
+            ])
         key = "case_" + str(uuid.uuid4())
         data_dir = os.path.join('/cache', key)
         os.makedirs(os.path.join(data_dir, 'data'), exist_ok=True)

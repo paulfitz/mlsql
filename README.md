@@ -4,7 +4,7 @@ Requirements:
  * install `docker`
  * install `curl`
  * Make sure docker allows at least 3GB of RAM (see `Docker`>`Preferences`>`Advanced`
-   or equivalent)
+   or equivalent) for sqlova, or 5GB or RAM for irnet.
 
 ## sqlova
 
@@ -78,16 +78,45 @@ Some questions about [iris.csv](https://en.wikipedia.org/wiki/Iris_flower_data_s
 | how many setosa rows are there | 50 | `SELECT count(col0) FROM iris WHERE Species = ? ['setosa']` |
 
 There are plenty of types of questions this model cannot answer (and that aren't covered
-in the dataset it is trained on, or in the sql it is permitted to generate).  I hope to
-track research in the area and substitute in models as they become available:
+in the dataset it is trained on, or in the sql it is permitted to generate).
+
+## irnet
+
+This wraps up a published pretrained model for IRNet (https://github.com/microsoft/IRNet).
+The model released so far isn't Bert-flavored, and I haven't completely nailed down all the
+details of running it, so don't judge the model by playing with it here.
+
+Fetch and start irnet running as an api server on port 5050:
+
+```
+docker run --name irnet -d -p 5050:5050 -v $PWD/cache:/cache paulfitz/sqlova
+```
+
+Be super patient! Especially on the first run, when a few large models need to
+be downloaded and unpacked.
+
+You can then ask questions of individual csv files as before, or several csv files
+(just repeat `-F "csv=@fileN.csv"`) or a simple sqlite db with tables related by foreign keys.
+In this last case, the model can answer using joins.
+
+```
+curl -F "sqlite=@companies.sqlite" -F "q=what city is The Firm headquartered in?" localhost:5050
+# Answer: SELECT T1.city FROM locations AS T1 JOIN organizations AS T2 WHERE T2.company = 1
+curl -F "sqlite=@companies.sqlite" -F "q=who is the CEO of Omni Cooperative" localhost:5050
+# Answer: SELECT T1.name FROM people AS T1 JOIN organizations AS T2 WHERE T2.company = 1
+curl -F "sqlite=@companies.sqlite" -F "q=what company has Dracula as CEO" localhost:5050
+# Answer: SELECT T1.company FROM organizations AS T1 JOIN people AS T2 WHERE T2.name = 1
+```
+
+## Other models
+
+I hope to track research in the area and substitute in models as they become available:
 
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [Spider leaderboard](https://yale-lily.github.io/spider)
- * [IRNet](https://github.com/microsoft/IRNet) - I've started work on [supporting this](https://github.com/paulfitz/mlsql/tree/master/irnet).
  * [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
  * Is there any code for [X-SQL](https://www.microsoft.com/en-us/research/publication/x-sql-reinforce-context-into-schema-representation/)?
  * [SyntaxSQL](https://github.com/taoyds/syntaxSQL)
  * [NL2SQL Challenge](https://tianchi.aliyun.com/competition/entrance/231716/information)
  * A term paper including a Sqlova reimplementation with tweaks: [Search Like a Human: Neural Machine Translation for Database Search](https://web.stanford.edu/class/cs224n/reports/custom/15709203.pdf)
  * [NL2SQL-BERT](https://github.com/guotong1988/NL2SQL-BERT) gives an example of how to add features derived from the table content to improve results.
-
