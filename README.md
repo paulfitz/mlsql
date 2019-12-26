@@ -4,7 +4,7 @@ Requirements:
  * install `docker`
  * install `curl`
  * Make sure docker allows at least 3GB of RAM (see `Docker`>`Preferences`>`Advanced`
-   or equivalent) for sqlova, or 5GB or RAM for irnet.
+   or equivalent) for sqlova, or 5GB for irnet.
 
 ## sqlova
 
