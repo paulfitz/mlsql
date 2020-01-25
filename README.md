@@ -37,6 +37,9 @@ This is using the sample `bridges.csv` included in this repo.
 | Throgs Neck | O. H. Ammann | 1800 |
 | George Washington | O. H. Ammann | 3500 |
 
+(For Postman users, the same request/reply would be sent/received like this)
+![Postman version](https://user-images.githubusercontent.com/118367/73127529-b05d5000-3f8f-11ea-8499-b58273ca1961.png)
+
 Here are some examples of the answers and sql inferred for plain-text questions about
 this table:
 
