@@ -120,6 +120,8 @@ I hope to track research in the area and substitute in models as they become ava
 
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [Spider leaderboard](https://yale-lily.github.io/spider)
+
+ * [ValueNET](https://github.com/brunnurs/valuenet) - looks like it could be interesting, building on IRNet but also tackling values.
  * [RAT-SQL](https://paperswithcode.com/paper/rat-sql-relation-aware-schema-encoding-and)
  * [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
  * Is there any code for [X-SQL](https://www.microsoft.com/en-us/research/publication/x-sql-reinforce-context-into-schema-representation/)?
