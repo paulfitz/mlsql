@@ -120,6 +120,7 @@ I hope to track research in the area and substitute in models as they become ava
 
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [Spider leaderboard](https://yale-lily.github.io/spider)
+ * [SparC leaderboard](https://yale-lily.github.io/sparc)
 
  * [ValueNET](https://github.com/brunnurs/valuenet) - looks like it could be interesting, building on IRNet but also tackling values.
  * [RAT-SQL](https://paperswithcode.com/paper/rat-sql-relation-aware-schema-encoding-and)
@@ -129,3 +130,4 @@ I hope to track research in the area and substitute in models as they become ava
  * [2019 NL2SQL Challenge](https://tianchi.aliyun.com/markets/tianchi/zhuiyi_en)
  * A term paper including a Sqlova reimplementation with tweaks: [Search Like a Human: Neural Machine Translation for Database Search](https://web.stanford.edu/class/cs224n/reports/custom/15709203.pdf)
  * [NL2SQL-BERT](https://github.com/guotong1988/NL2SQL-BERT) gives an example of how to add features derived from the table content to improve results.
+ * [Using EditSQL](https://towardsdatascience.com/natural-language-to-sql-use-it-on-your-own-database-d4cd5784d081)
