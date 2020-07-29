@@ -4,7 +4,7 @@ Requirements:
  * install `docker`
  * install `curl`
  * Make sure docker allows at least 3GB of RAM (see `Docker`>`Preferences`>`Advanced`
-   or equivalent) for sqlova, or 5GB for irnet.
+   or equivalent) for sqlova, or 5GB for irnet or valuenet.
 
 ## sqlova
 
@@ -83,6 +83,36 @@ Some questions about [iris.csv](https://en.wikipedia.org/wiki/Iris_flower_data_s
 There are plenty of types of questions this model cannot answer (and that aren't covered
 in the dataset it is trained on, or in the sql it is permitted to generate).
 
+## valuenet
+
+This wraps up a published pretrained model for ValueNet (https://github.com/brunnurs/valuenet),
+and includes material to convert user tables into the form needed to query them.  Don't
+judge the network by its quality here, go do a deep dive with the original - I've deviated
+from the original in important respects, including how named entity recognition is done.
+
+Fetch and start ValueNet running as an api server on port 5050:
+
+```
+docker run --name valuenet -d -p 5050:5050 -v $PWD/cache:/cache paulfitz/valuenet
+```
+
+You can then ask questions of individual csv files as before, or several csv files
+(just repeat `-F "csv=@fileN.csv"`) or a simple sqlite db with tables related by foreign keys.
+In this last case, the model can answer using joins.
+
+```
+curl -F "sqlite=@companies.sqlite" -F "q=who is the CEO of Omni Cooperative" localhost:5050
+# {"answer":[["Dracula"]], "sql":"SELECT T1.name FROM people AS T1 JOIN organizations AS T2 \
+#   ON T1.id = T2.ceo_id WHERE T2.company = 'Omni Cooperative'"}
+curl -F "csv=@bridges.csv" -F "q=how many designers are there?" localhost:5050
+# {"answer":[[5]],"sql":"SELECT DISTINCT count(DISTINCT T1.designer) FROM bridges AS T1"}
+curl -F "csv=@bridges.csv" -F "csv=@airports.csv" -F "q=how many designers are there?" localhost:5050
+# same answer
+curl -F "csv=@bridges.csv" -F "csv=@airports.csv" -F "q=what is the name of the airport with the highest latitude?" localhost:5050
+# {"answer":[["Disraeli Inlet Water Aerodrome"]],
+#  "sql":"SELECT T1.name FROM airports AS T1 ORDER BY T1.latitude_deg DESC LIMIT 1"}
+```
+
 ## irnet
 
 This wraps up a published pretrained model for IRNet (https://github.com/microsoft/IRNet).
@@ -122,7 +152,6 @@ I hope to track research in the area and substitute in models as they become ava
  * [Spider leaderboard](https://yale-lily.github.io/spider)
  * [SparC leaderboard](https://yale-lily.github.io/sparc)
 
- * [ValueNET](https://github.com/brunnurs/valuenet) - looks like it could be interesting, building on IRNet but also tackling values.
  * [RAT-SQL](https://paperswithcode.com/paper/rat-sql-relation-aware-schema-encoding-and)
  * [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
  * Is there any code for [X-SQL](https://www.microsoft.com/en-us/research/publication/x-sql-reinforce-context-into-schema-representation/)?
