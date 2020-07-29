@@ -1,0 +1,10 @@
+transformers==2.8.0
+pytictoc==1.5.0
+textdistance[extras]==4.2.0
+wandb==0.8.35
+spacy==2.2.4
+termcolor==1.1.0
+
+Flask==1.0.3
+records==0.5.2
+requests==2.22.0

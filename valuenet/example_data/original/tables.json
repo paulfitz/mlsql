@@ -1,0 +1,135 @@
+[
+  {
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "id"
+      ],
+      [
+        0,
+        "city"
+      ],
+      [
+        0,
+        "country"
+      ],
+      [
+        1,
+        "id"
+      ],
+      [
+        1,
+        "company"
+      ],
+      [
+        1,
+        "location id"
+      ],
+      [
+        1,
+        "ceo id"
+      ],
+      [
+        2,
+        "id"
+      ],
+      [
+        2,
+        "name"
+      ],
+      [
+        2,
+        "birth year"
+      ]
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "id"
+      ],
+      [
+        0,
+        "city"
+      ],
+      [
+        0,
+        "country"
+      ],
+      [
+        1,
+        "id"
+      ],
+      [
+        1,
+        "company"
+      ],
+      [
+        1,
+        "location_id"
+      ],
+      [
+        1,
+        "ceo_id"
+      ],
+      [
+        2,
+        "id"
+      ],
+      [
+        2,
+        "name"
+      ],
+      [
+        2,
+        "birth_year"
+      ]
+    ],
+    "column_types": [
+      "text",
+      "number",
+      "text",
+      "text",
+      "number",
+      "text",
+      "text",
+      "text",
+      "number",
+      "text",
+      "text"
+    ],
+    "db_id": "data",
+    "foreign_keys": [
+      [
+        7,
+        8
+      ],
+      [
+        6,
+        1
+      ]
+    ],
+    "primary_keys": [
+      1,
+      4,
+      8
+    ],
+    "table_names": [
+      "locations",
+      "organizations",
+      "people"
+    ],
+    "table_names_original": [
+      "locations",
+      "organizations",
+      "people"
+    ]
+  }
+]
