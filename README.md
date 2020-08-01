@@ -12,10 +12,10 @@ to a particular benchmark dataset).  I spend days tracking down and patching obs
 data preprocessing steps so you don't have to.
 
 So far I've packaged three models:
- * [SQLova](https://github.com/paulfitz/mlsql#sqlova).  Works on single tables.
- * [IRNet](https://github.com/paulfitz/mlsql#irnet).  Works on multiple tables, but doesn't
+ * [SQLova](#sqlova).  Works on single tables.
+ * [IRNet](#irnet).  Works on multiple tables, but doesn't
    predict parameters.
- * [ValueNet](https://github.com/paulfitz/mlsql#valuenet).  Works on multiple tables, and
+ * [ValueNet](#valuenet).  Works on multiple tables, and
    makes an effort to predict parameters.
 
 In each case, I've mangled the original network somewhat, so if they interest you do follow up
