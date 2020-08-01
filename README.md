@@ -6,6 +6,21 @@ Requirements:
  * Make sure docker allows at least 3GB of RAM (see `Docker`>`Preferences`>`Advanced`
    or equivalent) for sqlova, or 5GB for irnet or valuenet.
 
+I take pretrained models published along with academic papers, and do whatever it takes
+to make them testable on fresh data (academic work often omits that, with code tied
+to a particular benchmark dataset).  I spend days tracking down and patching obscure
+data preprocessing steps so you don't have to.
+
+So far I've packaged three models:
+ * [SQLova](https://github.com/paulfitz/mlsql#sqlova).  Works on single tables.
+ * [IRNet](https://github.com/paulfitz/mlsql#irnet).  Works on multiple tables, but doesn't
+   predict parameters.
+ * [ValueNet](https://github.com/paulfitz/mlsql#valuenet).  Works on multiple tables, and
+   makes an effort to predict parameters.
+
+In each case, I've mangled the original network somewhat, so if they interest you do follow up
+with the original sources.
+
 ## sqlova
 
 This wraps up a published pretrained model for Sqlova (https://github.com/naver/sqlova/).
@@ -36,9 +51,6 @@ This is using the sample `bridges.csv` included in this repo.
 | Bronx Whitestone | O. H. Ammann | 2300 |
 | Throgs Neck | O. H. Ammann | 1800 |
 | George Washington | O. H. Ammann | 3500 |
-
-(For Postman users, the same request/reply would be sent/received like this)
-![Postman version](https://user-images.githubusercontent.com/118367/73127529-b05d5000-3f8f-11ea-8499-b58273ca1961.png)
 
 Here are some examples of the answers and sql inferred for plain-text questions about
 this table:
@@ -145,6 +157,11 @@ curl -F "sqlite=@companies.sqlite" -F "q=what company has Dracula as CEO" localh
 
 (Note there's no value prediction, so e.g. the where clauses are `= 1` rather than something
 more useful).
+
+## Postman users
+
+Curl can be replaced by Postman for those who like that.  Here's a working set-up:
+![Postman version](https://user-images.githubusercontent.com/118367/73127529-b05d5000-3f8f-11ea-8499-b58273ca1961.png)
 
 ## Other models
 
