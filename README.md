@@ -11,6 +11,8 @@ to make them testable on fresh data (academic work often omits that, with code t
 to a particular benchmark dataset).  I spend days tracking down and patching obscure
 data preprocessing steps so you don't have to.
 
+![ValueNet example](https://user-images.githubusercontent.com/118367/89111827-75e5db80-d428-11ea-912a-e36a176bb56c.png)
+
 So far I've packaged three models:
  * [SQLova](#sqlova).  Works on single tables.
  * [ValueNet](#valuenet).  Works on multiple tables, and
