@@ -4,7 +4,7 @@ Requirements:
  * install `docker`
  * install `curl`
  * Make sure docker allows at least 3GB of RAM (see `Docker`>`Preferences`>`Advanced`
-   or equivalent) for sqlova, or 5GB for irnet or valuenet.
+   or equivalent) for SQLova, or 5GB for IRNet or ValueNet.
 
 I take pretrained models published along with academic papers, and do whatever it takes
 to make them testable on fresh data (academic work often omits that, with code tied
@@ -13,19 +13,19 @@ data preprocessing steps so you don't have to.
 
 So far I've packaged three models:
  * [SQLova](#sqlova).  Works on single tables.
- * [IRNet](#irnet).  Works on multiple tables, but doesn't
-   predict parameters.
  * [ValueNet](#valuenet).  Works on multiple tables, and
    makes an effort to predict parameters.
+ * [IRNet](#irnet).  Works on multiple tables, but doesn't
+   predict parameters.
 
 In each case, I've mangled the original network somewhat, so if they interest you do follow up
 with the original sources.
 
-## sqlova
+## SQLova
 
-This wraps up a published pretrained model for Sqlova (https://github.com/naver/sqlova/).
+This wraps up a published pretrained model for SQLova (https://github.com/naver/sqlova/).
 
-Fetch and start sqlova running as an api server on port 5050:
+Fetch and start SQLova running as an api server on port 5050:
 
 ```
 docker run --name sqlova -d -p 5050:5050 paulfitz/sqlova
@@ -95,12 +95,9 @@ Some questions about [iris.csv](https://en.wikipedia.org/wiki/Iris_flower_data_s
 There are plenty of types of questions this model cannot answer (and that aren't covered
 in the dataset it is trained on, or in the sql it is permitted to generate).
 
-## valuenet
+## ValueNet
 
-This wraps up a published pretrained model for ValueNet (https://github.com/brunnurs/valuenet),
-and includes material to convert user tables into the form needed to query them.  Don't
-judge the network by its quality here, go do a deep dive with the original - I've deviated
-from the original in important respects, including how named entity recognition is done.
+This wraps up a published pretrained model for ValueNet (https://github.com/brunnurs/valuenet).
 
 Fetch and start ValueNet running as an api server on port 5050:
 
@@ -125,15 +122,19 @@ curl -F "csv=@bridges.csv" -F "csv=@airports.csv" -F "q=what is the name of the 
 #  "sql":"SELECT T1.name FROM airports AS T1 ORDER BY T1.latitude_deg DESC LIMIT 1"}
 ```
 
+I've includes material to convert user tables into the form needed to query them.  Don't
+judge the network by its quality here, go do a deep dive with the original - I've deviated
+from the original in important respects, including how named entity recognition is done.
+
 I've written up [some experiments with ValueNet](https://paulfitz.github.io/2020/08/01/translate-english-to-sql-progress-updates.html).
 
-## irnet
+## IRNet
 
 This wraps up a published pretrained model for IRNet (https://github.com/microsoft/IRNet).
-The model released so far isn't Bert-flavored, and I haven't completely nailed down all the
-details of running it, so don't judge the model by playing with it here.
+Upstream released a better model after I packaged this, so don't judge the model by playing
+with it here.
 
-Fetch and start irnet running as an api server on port 5050:
+Fetch and start IRNet running as an api server on port 5050:
 
 ```
 docker run --name irnet -d -p 5050:5050 -v $PWD/cache:/cache paulfitz/irnet
