@@ -93,7 +93,7 @@ from the original in important respects, including how named entity recognition 
 Fetch and start ValueNet running as an api server on port 5050:
 
 ```
-docker run --name valuenet -d -p 5050:5050 -v $PWD/cache:/cache paulfitz/valuenet
+docker run --name valuenet -d -p 5050:5050 paulfitz/valuenet
 ```
 
 You can then ask questions of individual csv files as before, or several csv files
@@ -112,6 +112,8 @@ curl -F "csv=@bridges.csv" -F "csv=@airports.csv" -F "q=what is the name of the 
 # {"answer":[["Disraeli Inlet Water Aerodrome"]],
 #  "sql":"SELECT T1.name FROM airports AS T1 ORDER BY T1.latitude_deg DESC LIMIT 1"}
 ```
+
+I've written up [some experiments with ValueNet](https://paulfitz.github.io/2020/08/01/translate-english-to-sql-progress-updates.html).
 
 ## irnet
 
@@ -148,15 +150,6 @@ more useful).
 
 I hope to track research in the area and substitute in models as they become available:
 
- * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [Spider leaderboard](https://yale-lily.github.io/spider)
+ * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [SparC leaderboard](https://yale-lily.github.io/sparc)
-
- * [RAT-SQL](https://paperswithcode.com/paper/rat-sql-relation-aware-schema-encoding-and)
- * [Spider Schema GNN](https://github.com/benbogin/spider-schema-gnn)
- * Is there any code for [X-SQL](https://www.microsoft.com/en-us/research/publication/x-sql-reinforce-context-into-schema-representation/)?
- * [SyntaxSQL](https://github.com/taoyds/syntaxSQL)
- * [2019 NL2SQL Challenge](https://tianchi.aliyun.com/markets/tianchi/zhuiyi_en)
- * A term paper including a Sqlova reimplementation with tweaks: [Search Like a Human: Neural Machine Translation for Database Search](https://web.stanford.edu/class/cs224n/reports/custom/15709203.pdf)
- * [NL2SQL-BERT](https://github.com/guotong1988/NL2SQL-BERT) gives an example of how to add features derived from the table content to improve results.
- * [Using EditSQL](https://towardsdatascience.com/natural-language-to-sql-use-it-on-your-own-database-d4cd5784d081)
