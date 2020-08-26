@@ -2,7 +2,7 @@ Infer SQL queries from plain-text questions and table headers.
 
 Requirements:
  * install `docker`
- * install `curl`
+ * install `curl` (or, if you're feeling brave, [asql](https://github.com/paulfitz/asql))
  * Make sure docker allows at least 3GB of RAM (see `Docker`>`Preferences`>`Advanced`
    or equivalent) for SQLova, or 5GB for IRNet or ValueNet.
 
