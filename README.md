@@ -173,3 +173,8 @@ I hope to track research in the area and substitute in models as they become ava
  * [Spider leaderboard](https://yale-lily.github.io/spider)
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [SparC leaderboard](https://yale-lily.github.io/sparc)
+
+## Live demoes
+
+ * [Photon](https://naturalsql.com/) by the SalesForce group is a good live demo of
+   text-to-SQL.
