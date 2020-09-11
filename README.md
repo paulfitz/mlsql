@@ -173,6 +173,8 @@ I hope to track research in the area and substitute in models as they become ava
  * [Spider leaderboard](https://yale-lily.github.io/spider)
  * [WikiSQL leaderboard](https://github.com/salesforce/WikiSQL#leaderboard)
  * [SparC leaderboard](https://yale-lily.github.io/sparc)
+ 
+ * [RAT-SQL](https://github.com/Microsoft/rat-sql)
 
 ## Live demoes
 
